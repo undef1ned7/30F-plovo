@@ -5,9 +5,11 @@ import DishForm from "./components/DishForm/DishForm";
 const App = () => {
   const [addDish, setAddDish] = useState([]);
   const createDish = (dish) => {
-    setAddDish((prev) => [...prev, dish])
-  }
-
+    setAddDish((prev) => [...prev, dish]);
+  };
+  console.log("====================================");
+  console.log("hello");
+  console.log("====================================");
   return (
     <div>
       <Header />
