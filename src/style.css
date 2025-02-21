@@ -34,7 +34,19 @@
 }
 .form input {
   margin-bottom: 15px;
+  padding: 10px 5px;
+  border-radius: 5px;
+  border: 1px solid #6a6a6a;
+  outline: none;
 }
+.form textarea {
+  margin-bottom: 15px;
+  padding: 10px 5px;
+  border-radius: 5px;
+  border: 1px solid #6a6a6a;
+  outline: none;
+}
+
 .form button {
   width: max-content;
   padding: 5px 10px;
@@ -42,4 +54,44 @@
   border-radius: 5px;
   background-color: #0d6efd;
   color: #fff;
+  margin-left: auto;
+}
+
+.card {
+  border: 1px solid #6a6a6a;
+  border-radius: 5px;
+  height: 130px;
+  margin-top: 15px;
+}
+.col-8 {
+  width: 66.6%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.card .row {
+  height: 100%;
+}
+.col-8 h4 {
+  font-size: 19px;
+}
+
+.cart__item {
+  border: 1px solid #6a6a6a;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.cart__item div {
+  display: flex;
+  column-gap: 35px;
+}
+
+.cart__total {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
 }
