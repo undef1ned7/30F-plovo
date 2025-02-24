@@ -13,7 +13,7 @@ const Cart = () => {
       </div>
       <div className="cart__total">
         <p>total: </p>
-        <p>
+        <p>к
           <strong>1200</strong> KGS
         </p>
       </div>
