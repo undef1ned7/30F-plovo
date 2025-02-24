@@ -1,22 +1,36 @@
 import React from "react";
 
-const Cart = () => {
+const Cart = ({ cartDishes }) => {
+  console.log(cartDishes);
+
   return (
     <div className="cart">
       <h2>Cart</h2>
-      <div className="cart__item">
-        <p>Plov</p>
-        <div>
-          <p className="cart__item-count">3x</p>
-          <p className="cart__item-price">1200 KGS</p>
-        </div>
-      </div>
+      {cartDishes.map((cart) => {
+        return (
+          <div className="cart__item">
+            <p>{cart.dish.name}</p>
+            <div>
+              <p className="cart__item-count">{cart.amount}x</p>
+              <p className="cart__item-price">
+                {cart.dish.price * cart.amount} KGS
+              </p>
+            </div>
+          </div>
+        );
+      })}
       <div className="cart__total">
         <p>total: </p>
-        <p>к
-          <strong>1200</strong> KGS
+        <p>
+          <strong>
+            {cartDishes.reduce((acc, res) => {
+              return acc + res.amount * res.dish.price;
+            }, 0)}
+          </strong>
+          KGS
         </p>
       </div>
+      <button className="cart__btn">order</button>
     </div>
   );
 };

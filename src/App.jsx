@@ -16,9 +16,32 @@ const App = () => {
       price: 1200,
     },
   ]);
+  const [cartDishes, setCartDishes] = useState([]);
+
   const createDish = (dish) => {
     setAddDish((prev) => [...prev, dish]);
   };
+
+  const addToCart = (dish) => {
+    setCartDishes((prev) => {
+      const existingIndex = prev.findIndex((cartItem) => {
+        return cartItem.dish === dish;
+      });
+      if (existingIndex !== -1) {
+        const itemsCopy = [...prev];
+        const itemCopy = { ...itemsCopy[existingIndex] };
+        itemCopy.amount++;
+        itemsCopy[existingIndex] = itemCopy;
+
+        return itemsCopy;
+      } else {
+        return [...prev, { dish, amount: 1 }];
+      }
+    });
+  };
+
+  // const arr = [1, 2, 3, 4, 5, 6];
+
   console.log("====================================");
   console.log("hello");
   console.log("====================================");
@@ -31,10 +54,10 @@ const App = () => {
             <DishForm onSubmit={createDish} />
           </div>
           <div className="col-4">
-            <Dishes dishes={addDish} />
+            <Dishes dishes={addDish} addToCart={addToCart} />
           </div>
           <div className="col-4">
-            <Cart />
+            <Cart cartDishes={cartDishes} />
           </div>
         </div>
       </main>
