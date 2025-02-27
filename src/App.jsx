@@ -1,10 +1,11 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Cart from "./components/Cart/Cart";
+import Dishes from "./components/Dishes/Dishes";
+import DishForm from "./components/DishForm/DishForm";
 import Header from "./components/Header/Header";
 import "./style.css";
-import DishForm from "./components/DishForm/DishForm";
-import Dishes from "./components/Dishes/Dishes";
-import DishItem from "./components/Dishes/DishItem";
-import Cart from "./components/Cart/Cart";
+import { getProducts } from "./utils/request";
 const App = () => {
   const [addDish, setAddDish] = useState([
     {
@@ -16,10 +17,13 @@ const App = () => {
       price: 1200,
     },
   ]);
+
   const [cartDishes, setCartDishes] = useState([]);
 
   const createDish = (dish) => {
-    setAddDish((prev) => [...prev, dish]);
+    axios.post('http://localhost:7000/products', dish)
+    .then(() => getProducts(setAddDish))
+    .catch((e) => console.log(e))
   };
 
   const addToCart = (dish) => {
@@ -40,6 +44,12 @@ const App = () => {
     });
   };
 
+ 
+
+  useEffect(() => {
+    getProducts(setAddDish)
+  }, []);
+
   // const arr = [1, 2, 3, 4, 5, 6];
 
   console.log("====================================");
@@ -54,7 +64,7 @@ const App = () => {
             <DishForm onSubmit={createDish} />
           </div>
           <div className="col-4">
-            <Dishes dishes={addDish} addToCart={addToCart} />
+            <Dishes dishes={addDish} addToCart={addToCart} setAddDish={setAddDish} />
           </div>
           <div className="col-4">
             <Cart cartDishes={cartDishes} />

@@ -4,7 +4,7 @@ const DishForm = ({ onSubmit }) => {
   const [dish, setDish] = useState({
     name: "",
     description: "",
-    image: "",
+    imageLink: "",
     price: "",
   });
 
@@ -12,15 +12,12 @@ const DishForm = ({ onSubmit }) => {
     const { name, value } = e.target;
     setDish((prev) => ({ ...prev, [name]: value }));
   };
+
   // console.log(dish);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    onSubmit({
-      id: Math.random().toString(),
-      ...dish,
-      price: parseFloat(dish.price),
-    });
+    onSubmit(dish);
   };
 
   return (
@@ -31,7 +28,7 @@ const DishForm = ({ onSubmit }) => {
       <p className="form__label">description:</p>
       <textarea name="description" onChange={onChange}></textarea>
       <p className="form__label">image:</p>
-      <input type="text" name="image" onChange={onChange} />
+      <input type="text" name="imageLink" onChange={onChange} />
       <p className="form__label">price:</p>
       <input type="text" name="price" onChange={onChange} />
       <button>create</button>
